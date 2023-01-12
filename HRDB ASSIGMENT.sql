@@ -232,6 +232,11 @@ from employees;
     
 #7. Display the emplovee's name if it is a palindrome.
 
+select employees.first_name 
+from employees 
+where reverse (substring(first_name,1)=substring(first_name,1) ;
+
+
 #8.Display First names of all employees with initcaps.
 
 	select upper(first_name) 
@@ -423,7 +428,22 @@ FROM employees;
 #   Employees in department 1 and 3 are given a 5% raise, employees in department 2 are given a 10% raise, 
 #   employees in departments 4 and 5 are given a 15% raise, and employees in department 6 are not given a raise.
 
-
+select '05% raise' raise, employee_id, salary, 
+salary *.05 new_salary
+from  employees
+where  department_id IN (1,3)
+union
+select '10% raise', employee_id, salary, salary * .10
+from   employees
+where  department_id = 2
+union
+select '15% raise', employee_id, salary, salary * .15 
+from   employees
+where  department_id IN (4,5)
+union
+select 'no raise', employee_id, salary, salary
+from employees
+where  department_id = 6;
 
 
 #10. Write a query to display the top three earners in the EMPLOYEES table. Display their last names and salaries.
